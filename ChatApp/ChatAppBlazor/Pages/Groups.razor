@@ -1,0 +1,59 @@
+﻿@page "/groups/{GroupName}"
+@using Microsoft.AspNetCore.SignalR.Client
+@inject HttpClient Http
+
+<h1>
+    @GroupName
+</h1>
+
+<h1>Id: @_hubConnection?.ConnectionId</h1>
+
+@foreach (var message in _messages)
+{
+    <MudText>
+        @message
+    </MudText>
+}
+
+<MudTextField @bind-Value="Message" Label="Message" Variant="Variant.Outlined"></MudTextField>
+
+<MudButton OnClick="SendMessage" Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Send" Color="Color.Primary">
+    Send
+</MudButton>
+
+@code {
+    [Parameter]
+    public string? GroupName { get; set; }
+
+    private HubConnection? _hubConnection;
+    private List<string> _messages = new List<string>();
+    private string? Message { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _hubConnection = new HubConnectionBuilder()
+            .WithUrl("https://localhost:7194/chathub")
+            .Build();
+
+        _hubConnection.On<string, string>(nameof(GetMessage), GetMessage);
+        await _hubConnection.StartAsync();
+        await _hubConnection.InvokeAsync("JoinGroup", GroupName);
+
+        _messages = await Http.GetFromJsonAsync<List<string>>($"https://localhost:7194/api/Account/groups/{GroupName}");
+    }
+
+    private void GetMessage(string username, string message)
+    {
+        _messages.Add($"{username}: {message}");
+
+        StateHasChanged();
+    }
+
+    private async Task SendMessage()
+    {
+        if (_hubConnection?.State == HubConnectionState.Connected)
+        {
+            await _hubConnection.InvokeAsync("SendMessageToGroup", GroupName, Message ?? "Hello");
+        }
+    }
+}

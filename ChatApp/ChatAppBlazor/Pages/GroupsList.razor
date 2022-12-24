@@ -1,0 +1,32 @@
+﻿@page "/groups"
+@inject HttpClient Http
+
+<h3>Groups</h3>
+
+@if (_groups.Count == 0)
+{
+    <p>Empty</p>
+}
+else
+{
+    @foreach (var group in _groups)
+    {
+        var groupLink = $"/groups/{group}";
+
+        <p>
+            <MudLink Href="@groupLink">@group</MudLink>
+        </p>
+    }
+}
+
+
+
+@code {
+    private List<string> _groups = new List<string>();
+        
+    protected override async Task OnInitializedAsync()
+    {
+        _groups = await Http.GetFromJsonAsync<List<string>>("https://localhost:7194/api/Account/groups");   
+    }
+
+}

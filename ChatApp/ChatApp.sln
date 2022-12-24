@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32825.248
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatAppApi", "ChatApp\ChatAppApi.csproj", "{4D303FF9-56F3-48E2-BB6A-A65C389B9921}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatAppBlazor", "ChatAppBlazor\ChatAppBlazor.csproj", "{91E3BC05-BDAD-4405-9553-18435A8B2012}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4D303FF9-56F3-48E2-BB6A-A65C389B9921}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D303FF9-56F3-48E2-BB6A-A65C389B9921}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D303FF9-56F3-48E2-BB6A-A65C389B9921}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D303FF9-56F3-48E2-BB6A-A65C389B9921}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91E3BC05-BDAD-4405-9553-18435A8B2012}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91E3BC05-BDAD-4405-9553-18435A8B2012}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91E3BC05-BDAD-4405-9553-18435A8B2012}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91E3BC05-BDAD-4405-9553-18435A8B2012}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B38C6C2B-E24B-41CC-9692-4717E0FE4C61}
+	EndGlobalSection
+EndGlobal
